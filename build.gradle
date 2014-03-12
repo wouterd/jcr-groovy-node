@@ -1,0 +1,19 @@
+apply plugin: 'groovy'
+
+version = '1.0'
+
+repositories {
+  mavenCentral()
+  maven {
+    url "http://maven.onehippo.com/maven2"
+  }
+}
+
+dependencies {
+  testCompile group: 'junit', name: 'junit', version: '4.11'
+  testCompile 'org.onehippo.cms7:hippo-repository-testutils:2.24.09'
+  testCompile 'org.mockito:mockito-all:1.9.5'
+
+  compile 'javax.jcr:jcr:2.0'
+  compile 'org.codehaus.groovy:groovy-all:2.2.1'
+}

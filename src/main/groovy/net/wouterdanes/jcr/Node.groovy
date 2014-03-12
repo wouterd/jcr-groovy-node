@@ -9,7 +9,7 @@ import javax.jcr.Value
  */
 class Node extends NodeDecorator {
 
-  static Map propertyToValuePropertyMap = new HashMap()
+  private static Map propertyToValuePropertyMap = new HashMap()
 
   static {
     propertyToValuePropertyMap.put(PropertyType.BOOLEAN, 'boolean')
@@ -21,7 +21,8 @@ class Node extends NodeDecorator {
     propertyToValuePropertyMap.put(PropertyType.STRING, 'string')
   }
 
-  javax.jcr.Node node
+  private javax.jcr.Node node
+  String namespacePrefix = '*'
 
   Node(final javax.jcr.Node node) {
     super(node)
@@ -62,7 +63,7 @@ class Node extends NodeDecorator {
     if (property) {
       return property
     }
-    def prefixedProperties = node.getProperties("*:$name")
+    def prefixedProperties = node.getProperties("$namespacePrefix:$name")
     if (!prefixedProperties.hasNext()) {
       return null;
     }
